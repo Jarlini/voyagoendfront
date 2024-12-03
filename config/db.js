@@ -1,10 +1,13 @@
-
-
-// module.exports = connectDB;
 const mongoose = require('mongoose');
 
-const connectDB = async () => {
-  mongoose.connect(process.env.MONGODB_URI, {
+const connectWithRetry = () => {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    console.error('MongoDB URI is not defined. Please set it in your environment variables.');
+    return;
+  }
+
+  mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -16,4 +19,6 @@ const connectDB = async () => {
     });
 };
 
-module.exports = connectDB;
+// Call the function to establish a connection
+connectWithRetry();
+
