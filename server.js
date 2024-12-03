@@ -22,7 +22,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000', // Allow requests from frontend
+    origin: process.env.CLIENT_URL || 'https://voyagoendfront.vercel.app/', // Allow requests from frontend
 }));
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies
